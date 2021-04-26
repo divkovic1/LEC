@@ -11,7 +11,7 @@ class View
 
     public function render($renderpage, $parameters=[])
     {
-        print_r ($parameters);
+        //print_r ($parameters);
         ob_start();
         extract($parameters);
         include BP . 'view' . DIRECTORY_SEPARATOR . 
