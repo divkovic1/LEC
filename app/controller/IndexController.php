@@ -4,14 +4,16 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $this->view->render('index',[]
-            'result'=>2+2,
-            'second'='ttt'
-        ]
+        $this->view->render('index');
     }
 
-    public function second()
+    public function era()
     {
-        $this->view->render('second');
+        $this->view->render('era');
+    }
+
+    public function contact()
+    {
+        $this->view->render('contact');
     }
 }
