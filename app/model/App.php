@@ -12,7 +12,7 @@ class App
             }else{
                 $class=ucfirst($parts[1]);
             }
-
+            $class.='Controller';
 
             $function='';
             if(!isset($parts[2]) || $parts[2]==''){
@@ -30,10 +30,10 @@ class App
     }
 
     
-public static function config($kljuc)
+public static function config($key)
     {
-    $config=include BP . 'config.php';
-    return $config[$kljuc];
+    $config=include BP_APP . 'config.php';
+    return $config[$key];
     }
 
 }

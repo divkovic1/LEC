@@ -14,7 +14,7 @@ class View
         //print_r ($parameters);
         ob_start();
         extract($parameters);
-        include BP . 'view' . DIRECTORY_SEPARATOR . 
+        include BP_APP . 'view' . DIRECTORY_SEPARATOR . 
         $renderpage . '.phtml';
         $content = ob_get_clean();
         $footerData=$this->footerData();
