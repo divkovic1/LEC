@@ -12,6 +12,19 @@
                 <?App::config('AppName')?>
             </a>
         </li>
+
+        <?php if(isset($_SESSION['authorized'])): ?>
+        <ul class="vertical menu">
+        <li><a href="#">Players</a></li>
+        <li><a href="#">Teams</a></li>
+        <li><a href="#">Coaches</a></li>
+        <?php if($_SESSION['authorized']->role=='admin'): ?>
+            <li><a href="#">Operators</a></li> 
+            <?php endif;?>       
+        </ul>
+       </li>
+    <?php endif;?>
+
         <li><a href="<?=App::config('url')?>index/era">ERA</a></li>
         <li><a href="<?=App::config('url')?>index/contact">Contact</a></li>
     </ul>
@@ -22,7 +35,12 @@
         <?php if(!isset($_SESSION['authorized'])): ?>
             <a href="<?App::config('url')?>index/login">Authorize</a>
             <?php else: ?>
-                <a href="<?App::config('url')?>index/login">Log Out</a>
+
+            
+                <a href="<?App::config('url')?>index/logout">
+                  <?=$_SESSION['authorized']->name?> <?=$_SESSION['authorized']->surname?> Log Out
+                
+                </a>
             <?php endif;?>
         </li>
         </ul>
