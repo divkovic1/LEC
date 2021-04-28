@@ -22,22 +22,40 @@ class IndexController extends Controller
         $this->loginView('','');
     }
 
-    public function autorizacija()
+    public function logout()
     {
-        if(!isset($_POST['email']) || !isset($_POST['lozinka'])){
+        unset($_SESSION['authorized']);
+        session_destroy();
+        $this->index();
+    }
+
+    public function authorization()
+    {
+        if(!isset($_POST['email']) || !isset($_POST['password'])){
             $this->login();
             return; //short curcuiting
         }
 
         if(strlen(trim($_POST['email']))===0){
-            $this->loginView('','Obavezno email');
+            $this->loginView('','Email is required');
             return;
         }
 
-        if(strlen(trim($_POST['lozinka']))===0){
-            $this->loginView($_POST['email'],'Obavezno lozinka');
+        if(strlen(trim($_POST['password']))===0){
+            $this->loginView($_POST['email'],'Password is required');
             return;
         }
+
+        if(!($_POST['email']==='dominik@edunova.hr' &&
+            $_POST['password']==='e')){
+                $this->loginView($_POST['email'],'Incorrect email or password');
+                return;
+            }
+
+    $_SESSION['authorized']='LEC User';
+    $np = new ControlPanelController();
+    $np->index();
+
 
     }
 
