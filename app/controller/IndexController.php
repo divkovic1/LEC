@@ -46,16 +46,32 @@ class IndexController extends Controller
             return;
         }
 
-        if(!($_POST['email']==='dominik@edunova.hr' &&
-            $_POST['password']==='e')){
-                $this->loginView($_POST['email'],'Incorrect email or password');
-                return;
-            }
+        $connection = DB::getInstance();
+        $expression=$connection->prepare('
+        
+            select * from operator where email=:email
 
-    $_SESSION['authorized']='LEC User';
+        ');
+        $expression->execute(['email'=>$_POST['email']]);
+        $result = $expression->fetch();
+
+        if($result==null){
+            $this->loginView($_POST['email'],'Email does not exist in the database');
+            return;
+        }
+
+        if(!password_verify($_POST['password'],$result->password)){
+            $this->loginView($_POST['email'],'Combination of email and password is not correct');
+            return;
+        }
+            
+
+
+            
+    unset($result->password);
+    $_SESSION['authorized']=$result;
     $np = new ControlPanelController();
     $np->index();
-
 
     }
 
@@ -67,7 +83,7 @@ class IndexController extends Controller
         ]);
     }
 
-    
+    /*
     public function test()
     {
         $connection= DB::getInstance();
@@ -76,5 +92,5 @@ class IndexController extends Controller
         $results = $expression->fetchAll();
         print_r($results);
     }
-    
+    */
 }
