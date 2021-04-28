@@ -5,7 +5,7 @@ return [
     'AppName'=>'LEC Overview',
     'base'=>[
         'server'=>'localhost',
-        'base'=>'lec',
+        'database'=>'lec',
         'user'=>'edunova',
         'password'=>'edunova'
     ]

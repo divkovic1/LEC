@@ -67,10 +67,14 @@ class IndexController extends Controller
         ]);
     }
 
-    /*
+    
     public function test()
     {
-        echo password_hash('o',PASSWORD_BCRYPT);
+        $connection= DB::getInstance();
+        $expression= $connection->prepare('select * from player');
+        $expression->execute();
+        $results = $expression->fetchAll();
+        print_r($results);
     }
-    */
+    
 }
