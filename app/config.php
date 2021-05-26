@@ -12,9 +12,9 @@ if($dev){
 }else{
     $base=[
         'server'=>'localhost',
-        'database'=>'xxxxx',
-        'user'=>'xxxxx',
-        'password'=>'xxxxx'
+        'database'=>'cesar_pp22',
+        'user'=>'cesar_edunova',
+        'password'=>'edunova123.'
     ];
 }
 return [

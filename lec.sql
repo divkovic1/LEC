@@ -2,6 +2,7 @@ drop database if exists lec;
 create database lec character set utf8mb4 COLLATE utf8mb4_croatian_ci;
 use lec;
 
+alter database cesar_pp22 default character set utf8mb4;
 
 create table operator(
     id int not null primary key auto_increment,
