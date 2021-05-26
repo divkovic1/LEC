@@ -7,7 +7,7 @@ if($dev){
         'database'=>'edunovapp22',
         'user'=>'edunova',
         'password'=>'edunova'
-        ]
+        
     ];  
 }else{
     $base=[
@@ -19,6 +19,6 @@ if($dev){
 }
 return [
     'url'=>'http://polaznik26.edunova.hr/',
-    'AppName'=>'LEC'
+    'AppName'=>'LEC',
     'database'=>$database
-]
+];
