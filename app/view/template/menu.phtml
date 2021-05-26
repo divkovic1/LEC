@@ -15,7 +15,7 @@
 
         <?php if(isset($_SESSION['authorized'])): ?>
         <ul class="vertical menu">
-        <li><a href="#">Players</a></li>
+        <li><a href="<?=App::config('url')?>player/index">Players</a></li>
         <li><a href="#">Teams</a></li>
         <li><a href="#">Coaches</a></li>
         <?php if($_SESSION['authorized']->role=='admin'): ?>
