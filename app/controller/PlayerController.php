@@ -10,6 +10,8 @@ class PlayerController extends AuthorizationController
 
     public function index()
     {
-        $this->view->render($this->viewDir . 'index');
+        $this->view->render($this->viewDir . 'index',[
+            'players'=>Player::loadEverything()
+        ]);
     }
 }
