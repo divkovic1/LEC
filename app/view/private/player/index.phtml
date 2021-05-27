@@ -1,3 +1,11 @@
-<pre>
-<?php print_r($players) ?>
-</pre>
+<h1 style="font-size: 1em;">Players</h1>
+<a href="<?=App::config('url')?>player/new">Add a new player</a>
+<ul>
+<?php foreach ($players as $player): ?>
+    <li>
+        <?=$player->name?>
+        <a href="#">Change</a>
+        <a href="#">Delete</a>
+    </li>
+<?php endforeach; ?>
+</ul>

@@ -1,0 +1,28 @@
+<form action="log-in-form"
+    action="<?=App::config('url')?>player/new"
+    method="POST">
+
+    <h4 class="text-center">Add a new player</h4>
+    <label>Name
+        <input type="text"name="name" value="<?=$player->name?>">    
+        
+    <label>Surname
+        <input type="text" name="trajanje" value="<?=$player->surname?>">
+    </label>
+
+    <label>Country
+        <input type="text" name="cijena" value="<?=$player->country?>">
+    </label>
+
+    <label>Nickname
+        <input type="text" name="cijena" value="<?=$player->nickname?>">
+    </label>
+
+    <label>Lane
+        <input type="text" name="cijena" value="<?=$player->lane?>">
+    </label>
+
+    <p><input type="submit" class="button expanded" value="Submit"></input></p>
+
+    <?=$message?>
+</form>
