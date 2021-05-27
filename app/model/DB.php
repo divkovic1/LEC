@@ -8,7 +8,7 @@ class DB extends PDO
     private function __construct($database)
     {
         $dsn='msql:host=' . $database['server'] . 
-        ';dbname=' . $database['database'] . ';charset=utf8';
+        ';dbname=' . $database['database'] . ';charset=utf8mb4';
 
         parent::__construct($dsn,$database['user'],$database['password']);
         $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);

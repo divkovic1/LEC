@@ -22,7 +22,16 @@
         <input type="text" name="cijena" value="<?=$player->lane?>">
     </label>
 
-    <p><input type="submit" class="button expanded" value="Submit"></input></p>
-
     <?=$message?>
+
+    <div class="grid-x grid-padding-x">
+  <div class="cell medium-6 large-6">
+    <a class="alert button expanded" 
+        href="<?=App::config('url')?>player/index">Back</a>
+  </div>
+  <div class="cell medium-6 large-6">
+    <input type="submit" class="button expanded" value="Submit"></input>
+  </div>
+</div>
+
 </form>

@@ -13,4 +13,15 @@ class Player
         $expression->execute();
         return $expression->fetchAll();
     }
+    public static function addNew($player)
+    {
+        $connection = DB::getInstance();
+        $expression=$connection->prepare('
+
+            insert into player (name,surname,country,nickname,lane)
+            values(:name,:surname,:country,:nickname,:lane)
+        ');
+        $expression->execute((array)$player);
+        
+    }
 }
