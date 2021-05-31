@@ -4,7 +4,7 @@ $dev=$_SERVER['REMOTE_ADDR']==='127.0.0.1' ? true : false;
 if($dev){
     $database=[
         'server'=>'localhost',
-        'database'=>'edunovapp22',
+        'database'=>'lec',
         'user'=>'edunova',
         'password'=>'edunova'
         
@@ -12,8 +12,8 @@ if($dev){
 }else{
     $base=[
         'server'=>'localhost',
-        'database'=>'cesar_pp22',
-        'user'=>'cesar_edunova',
+        'database'=>'nika_LEC',
+        'user'=>'nika_Dominik',
         'password'=>'edunova123.'
     ];
 }

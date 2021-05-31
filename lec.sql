@@ -2,7 +2,7 @@ drop database if exists lec;
 create database lec character set utf8mb4 COLLATE utf8mb4_croatian_ci;
 use lec;
 
-alter database cesar_pp22 default character set utf8mb4;
+alter database nika_LEC default character set utf8mb4;
 
 create table operator(
     id int not null primary key auto_increment,
@@ -13,9 +13,9 @@ create table operator(
     role varchar(10) not null
 );
 
-insert into operator values(null,'dominik@edunova.hr','$2y$12$GlcdCH7Xrn/Agx2ddZyHFe2qUQsxN/qeYNDym.e9Mf6ze7AFZtWr2 ','Admin','Dominik','admin');
+insert into operator values(null,'dominik@edunova.hr','$2y$12$GlcdCH7Xrn/Agx2ddZyHFe2qUQsxN/qeYNDym.e9Mf6ze7AFZtWr2','Admin','Dominik','admin');
 
-insert into operator values(null,'op@edunova.hr','$2y$12$GlcdCH7Xrn/Agx2ddZyHFe2qUQsxN/qeYNDym.e9Mf6ze7AFZtWr2 ','Operator','Edunova','op');
+insert into operator values(null,'op@edunova.hr','$2y$12$GlcdCH7Xrn/Agx2ddZyHFe2qUQsxN/qeYNDym.e9Mf6ze7AFZtWr2','Operator','Edunova','op');
 
 create table matchday(
     id int not null primary key auto_increment,
