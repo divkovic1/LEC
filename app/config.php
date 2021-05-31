@@ -10,7 +10,7 @@ if($dev){
         
     ];  
 }else{
-    $base=[
+    $database=[
         'server'=>'localhost',
         'database'=>'nika_LEC',
         'user'=>'nika_Dominik',
