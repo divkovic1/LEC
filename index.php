@@ -11,10 +11,12 @@ error_reporting(E_ALL);
 session_start();
 
 //echo __DIR__;
-define('BP',__DIR__ . DIRECTORY_SEPARATOR);
+define('BP',__DIR__ . DIRECTORY_SEPARATOR . 'app');
+
+//echo BP;
+
 define('BP_APP',__DIR__ . DIRECTORY_SEPARATOR 
             . 'app' . DIRECTORY_SEPARATOR);
-//echo BP;
 
 $path=implode(
     PATH_SEPARATOR,
