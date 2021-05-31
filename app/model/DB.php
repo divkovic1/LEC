@@ -18,7 +18,7 @@ class DB extends PDO
     public static function getInstance()
     {
         if(self::$instance==null){
-            self::$instance = new self (App::config('database'));
+            self::$instance = new self(App::config('database'));
         }
         return self::$instance;
     }

@@ -75,11 +75,11 @@ class IndexController extends Controller
 
     }
 
-    private function loginView($email,$poruka)
+    private function loginView($email,$message)
     {
         $this->view->render('login',[
             'email'=>$email,
-            'poruka'=>$poruka
+            'message'=>$message
         ]);
     }
 
