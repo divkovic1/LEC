@@ -13,9 +13,9 @@ create table operator(
     role varchar(10) not null
 );
 
-insert into operator values(null,'dominik@edunova.hr','$2y$12$tZCLg9iAd4k59.EiiJBM5eFBUMN8fs1PdiBMx6ZmzeGjqOSVpYKje','Admin','Dominik','admin');
+insert into operator values(null,'dominik@edunova.hr','$2y$12$GlcdCH7Xrn/Agx2ddZyHFe2qUQsxN/qeYNDym.e9Mf6ze7AFZtWr2 ','Admin','Dominik','admin');
 
-insert into operator values(null,'op@edunova.hr','$2y$12$tZCLg9iAd4k59.EiiJBM5eFBUMN8fs1PdiBMx6ZmzeGjqOSVpYKje','Operator','Edunova','op');
+insert into operator values(null,'op@edunova.hr','$2y$12$GlcdCH7Xrn/Agx2ddZyHFe2qUQsxN/qeYNDym.e9Mf6ze7AFZtWr2 ','Operator','Edunova','op');
 
 create table matchday(
     id int not null primary key auto_increment,
