@@ -4,18 +4,27 @@ use lec;
 
 alter database nika_LEC default character set utf8mb4;
 
+drop table if exists operator;
+drop table if exists matchday;
+drop table if exists caster;
+drop table if exists organization;
+drop table if exists player;
+drop table if exists coach;
+drop table if exists game;
+
+
 create table operator(
     id int not null primary key auto_increment,
     email varchar(50) not null,
-    password char(60) not null,
+    password char(65) not null,
     name varchar(50) not null,
     surname varchar(50) not null,
     role varchar(10) not null
 );
 
-insert into operator values(null,'dominik@edunova.hr','$2y$12$GlcdCH7Xrn/Agx2ddZyHFe2qUQsxN/qeYNDym.e9Mf6ze7AFZtWr2','Admin','Dominik','admin');
+insert into operator values(null,'dominik@edunova.hr','$2y$12$wKo5ZBAxlRP063mVDroInOlnyZiMebfEWhGcjOjxsvfEroJsej572','Admin','Dominik','admin');
 
-insert into operator values(null,'op@edunova.hr','$2y$12$GlcdCH7Xrn/Agx2ddZyHFe2qUQsxN/qeYNDym.e9Mf6ze7AFZtWr2','Operator','Edunova','op');
+insert into operator values(null,'op@edunova.hr','$2y$12$Q5SrpAIeCa05alChBAWiuueAwelKSO84flBSzsObQPVIyywlzTb2O','Operator','Edunova','op');
 
 create table matchday(
     id int not null primary key auto_increment,
