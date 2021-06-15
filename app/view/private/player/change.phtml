@@ -1,0 +1,34 @@
+<form class="log-in-form"
+action="<?=App::config('url')?>player/change"
+method="POST">
+<h4 class="text-center">Change existing player</h4>
+<label>Name
+    <input type="text"name="name" value="<?=$player->name?>">
+</label>
+<label>Surname
+    <input type="text"name="surname" value="<?=$player->surname?>">
+</label>
+<label>Nickname
+    <input type="text"name="nickname" value="<?=$player->nickname?>">
+</label>
+<label>Country
+    <input type="text"name="country" value="<?=$player->country?>">
+</label>
+<label>Lane
+    <input type="text"name="lane" value="<?=$player->lane?>">
+</label>
+
+<?=$message?>
+
+<div class="grid-x grid-padding-x">
+  <div class="cell small-6 medium-6 large-6">
+    <a class="alert button expanded" 
+        href="<?=App::config('url')?>player/index">Back</a>
+  </div>
+  <div class="cell small-6 medium-6 large-6">
+    <input type="submit" class="button expanded" value="Change"></input>
+  </div>
+</div>
+<input type="hidden" name="sifra" value="<?=$player->id?>">
+
+</form>

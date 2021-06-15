@@ -8,6 +8,9 @@ class PlayerController extends AuthorizationController
                         . 'player'
                         . DIRECTORY_SEPARATOR;
 
+    private $player=null;
+    private $message='';
+
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
@@ -18,68 +21,144 @@ class PlayerController extends AuthorizationController
     public function new()
     {
         if($_SERVER['REQUEST_METHOD']==='GET'){
-            $player = new stdClass();
-            $player->name='';
-            $player->surname='';
-            $player->country='';
-            $player->nickname='';
-            $player->lane='';
-        //    $this->view->render($this->viewDir . 'new',[
-        //        'player'=>$player,
-        //        'message'=>'Enter the details please'
-        //    ]);
-            $this->newView($player,'Enter all the details please');
+            $this->newPlayer();
             return;
         }
-
-
-        $player = (object) $_POST;
-
-        if(strlen(trim($player->nickname))===0){
-       //     $this->view->render($this->viewDir . 'new',[
-       //         'player'=>$player,
-       //         'message'=>'The nickname is required.'
-       //     ]);
-        $this->newView($player,'The nickname is required');
-            return;
-        }
-        
-        if(strlen(trim($player->name))>50){
-            $this->newView($player,'The name cannot have more than 50 characters');
-            return;
-        }
-
-        if(strlen(trim($player->surname))>50){
-            $this->newView($player,'The surname cannot have more than 50 characters');
-            return;
-        }
-
-        if(strlen(trim($player->country))>50){
-            $this->newView($player,'The country name cannot have more than 50 characters');
-            return;
-        }
-
-        if(strlen(trim($player->nickname))>50){
-            $this->newView($player,'The nickname cannot have more than 50 characters');
-            return;
-        }
-
-        if(strlen(trim($player->lane))>50){
-            $this->newView($player,'The lane cannot have more than 50 characters');
-            return;
-        }
-
-        Player::addNew($player);
+        $this-> player = (object) $_POST;
+        if(!$this->controlName()){return;}
+        if(!$this->controlSurname()){return;}
+        if(!$this->controlCountry()){return;}
+        if(!$this->controlNickname()){return;}
+        if(!$this->controlLane()){return;}
+        Player::addNew($this->player);
         $this->index();
 
+        }
+        
+        public function change()
+        {
+            if($_SERVER['REQUEST_METHOD']==='GET'){
+                if(!isset($_GET['id'])){
+                    $ic = new IndexController();
+                    $ic->logout();
+                    return;
+                }
+                $this->player = Player::load($_GET['id']);
+                $this->message='Change the desired information';
+                $this->changeView();
+                return;
+            }
+            $this->player = (object) $_POST;
+            if(!$this->controlName()){return;}
+            if(!$this->controlSurname()){return;}
+            if(!$this->controlNickname()){return;}
+            if(!$this->controlLane()){return;}
+            Player::changeExisting($this->player);
+            $this->index();
+        } 
+        
+        private function newPlayer()
+        {
+            $this->player = new stdClass();
+            $this->player->name='';
+            $this->player->surname='';
+            $this->player->country='';
+            $this->player->nickname='';
+            $this->player->lane='';
+            $this->message='Enter the details';
+            $this->newView();
+
+        }
+
+        private function newView()
+        {
+            $this->view->render($this->viewDir . 'new',[
+                'player'=>$this->player,
+                'message'=>$this->message
+            ]);
+        }
+
+        private function changeView()
+        {
+            $this->view->render($this->viewDir . 'change',[
+                'player'=>$this->player,
+                'message'=>$this->message
+            ]);
+        }
+
+        private function controlName()
+        {
+            if(strlen(trim($this->player->name))===0){
+                $this->message='Name is required';
+                $this->newView();
+                return false;
+            }
+            if(strlen(trim($this->player->name))>50){
+                $this->message='The name cannot have more than 50 characters';
+                $this->newView();
+                return false;
+        }
+        return true;
     }
 
-    private function newView($player, $message)
+        private function controlSurname()
+        {
+            if(strlen(trim($this->player->surname))===0){
+                $this->message='Surname is required';
+                $this->newView();
+                return false;
+            }
+            if(strlen(trim($this->player->surname))>50){
+                $this->message='The surname cannot have more than 50 characters';
+                $this->newView();
+                return false;
+        }
+        return true;
+     }
 
-    {
-        $this->view->render($this->viewDir . 'new',[
-            'player'=>$player,
-            'message'=>$message
-        ]);
+        private function controlNickname()
+        {
+         if(strlen(trim($this->player->nickname))===0){
+             $this->message='Nickname is required';
+             $this->newView();
+             return false;
+         }
+         if(strlen(trim($this->player->nickname))>50){
+             $this->message='The nickname cannot have more than 50 characters';
+             $this->newView();
+             return false;
+        }
+        return true;
+ }
+
+        private function controlCountry()
+        {
+         if(strlen(trim($this->player->country))===0){
+             $this->message='Country is required';
+             $this->newView();
+             return false;
+         }
+         if(strlen(trim($this->player->country))>50){
+             $this->message='The country cannot have more than 50 characters';
+             $this->newView();
+             return false;
+        }
+        return true;
+ }
+
+        private function controlLane()
+        {
+         if(strlen(trim($this->player->lane))===0){
+             $this->message='Lane is required';
+             $this->newView();
+             return false;
+         }
+         if(strlen(trim($this->player->lane))>10){
+             $this->message='The lane cannot have more than 10 characters';
+             $this->newView();
+             return false;
+        }
+        return true;
     }
 }
+
