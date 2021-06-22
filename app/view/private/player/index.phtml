@@ -1,13 +1,17 @@
 <h1 style="font-size: 1em;">Players</h1>
 <a href="<?=App::config('url')?>player/new">Add a new player</a>
-<ul>
+<ul style="list-style-type: none">
 <?php foreach ($players as $player): ?>
     <li>
-        <?=$player->name?>
+        <span style="font-size: 1.5em; color:black"><?=$player->nickname?></span>
         <a href="<?=App::config('url')?>player/change?id=<?$player->id?>">
-            Change
+            <i title="Change" class="fas fa-2x fa-pencil-alt"></i>
         </a>
-        <a href="#">Delete</a>
+        <?php if($player->playerorg==0): ?>
+            <a href="<?=App::config('url')?>player/delete?id=<?=$player->id?>"
+            onclick="return confirm('Are you sure? <?=$player->name?>?');">
+            <i title="Delete" style="color:red" class="fas fa-trash-alt"></i> </a>
+        <?php endif;?>
     </li>
 <?php endforeach; ?>
 </ul>

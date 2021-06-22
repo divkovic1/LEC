@@ -56,6 +56,17 @@ class PlayerController extends AuthorizationController
             Player::changeExisting($this->player);
             $this->index();
         } 
+
+        public function delete()
+        {
+            if(!isset($_GET['id'])){
+                $ic = new IndexController();
+                $ic->logout();
+                return;
+            }
+            Player::deleteExisting($_GET['id']);
+            header('location: ' . App::config('url') . 'player/index');
+        }
         
         private function newPlayer()
         {

@@ -18,7 +18,11 @@ class Player
         $connection = DB::getInstance();
         $expression=$connection->prepare('
         
-                select * from player
+                select a.*,count(b.player) as playerorg
+                from player a
+                left join organization b on b.id=a.player
+                group by a.name,a.surname,
+                a.country,a.nickname,a.lane ;
         ');
         $expression->execute();
         return $expression->fetchAll();
@@ -46,5 +50,14 @@ class Player
             where id=:id
         ');
         $expression->execute((array)$player);
+    }
+
+    public static function deleteExisting($id)
+    {
+        $connection = DB::getInstance();
+        $expression=$connection->prepare('
+            delete from player where id=:id
+        ');
+        $expression->execute(['id'=>$id]);
     }
 }
