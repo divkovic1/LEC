@@ -25,6 +25,16 @@ class CoachController extends AuthorizationController
         }
         $this->entity = (object) $_POST;
 
+        try {
+            $this->controlName();
+            $this->controlSurname();
+            $this->controlNickname();
+        } catch (Exception $e) {
+            $this->message=$e->getMessage();
+            $this->newView();
+            return;
+        }
+
         Coach::addNew($this->entity);
         $this->index();
     }
@@ -48,4 +58,22 @@ class CoachController extends AuthorizationController
         ]);
     }
 
+    private function controlName()
+    {
+        if(strlen(trim($this->entity->name))==0){
+            throw new Exception('Name is required');
+        }
+    }
+    private function controlSurname()
+    {
+        if(strlen(trim($this->entity->surname))==0){
+            throw new Exception ('Surname is required');
+        }
+    }
+    private function controlNickname()
+    {
+        if(strlen(trim($this->entity->nickname))==0){
+            throw new Exception ('Nickname is required');
+        }
+    }
 }
