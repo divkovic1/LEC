@@ -5,7 +5,7 @@ class DB extends PDO
 
     private static $instance=null;
 
-    public function __construct($database)
+    private function __construct($database)
     {
         $dsn='mysql:host=' . $database['server'] . 
         ';dbname=' . $database['database'] . ';charset=utf8mb4';
