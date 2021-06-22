@@ -1,1 +1,17 @@
-<?php print_r($entities); ?>
+<h1 style="font-size: 1em;">Coaches</h1>
+<a href="<?=App::config('url')?>coach/new">Add a new coach</a>
+<ul style="list-style-type: none">
+<?php foreach ($coaches as $coach): ?>
+    <li>
+        <span style="font-size: 1.5em; color:black"><?=$coach->nickname?></span>
+        <a href="<?=App::config('url')?>coach/change?id=<?$coach->id?>">
+            <i title="Change" class="fas fa-2x fa-pencil-alt"></i>
+        </a>
+        <?php if($coach->coachorg==0): ?>
+            <a href="<?=App::config('url')?>coach/delete?id=<?=$coach->id?>"
+            onclick="return confirm('Are you sure? <?=$coach->name?>?');">
+            <i title="Delete" style="color:red" class="fas fa-trash-alt"></i> </a>
+        <?php endif;?>
+    </li>
+<?php endforeach; ?>
+</ul>
