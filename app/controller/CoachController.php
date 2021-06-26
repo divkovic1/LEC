@@ -14,7 +14,7 @@ class CoachController extends AuthorizationController
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-            'entities'=>Coach::loadEverything()
+            'coaches'=>Coach::loadEverything()
         ]);
     }
     public function new()
