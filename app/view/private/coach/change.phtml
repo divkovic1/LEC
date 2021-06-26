@@ -1,0 +1,31 @@
+<form class="log-in-form"
+action="<?=App::config('url')?>coach/change"
+method="POST">
+<h4 class="text-center">Change existing coach</h4>
+<label>Name
+    <input type="text"name="name" value="<?=$entity->name?>">
+</label>
+<label>Surname
+    <input type="text"name="surname" value="<?=$entity->surname?>">
+</label>
+<label>Nickname
+    <input type="text"name="nickname" value="<?=$entity->nickname?>">
+</label>
+<label>Country
+    <input type="text"name="country" value="<?=$entity->country?>">
+</label>
+
+<?=$message?>
+
+<div class="grid-x grid-padding-x">
+  <div class="cell small-6 medium-6 large-6">
+    <a class="alert button expanded" 
+        href="<?=App::config('url')?>coach/index">Back</a>
+  </div>
+  <div class="cell small-6 medium-6 large-6">
+    <input type="submit" class="button expanded" value="Change"></input>
+  </div>
+</div>
+<input type="hidden" name="id" value="<?=$entity->id?>">
+
+</form>

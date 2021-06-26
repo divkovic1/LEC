@@ -26,17 +26,56 @@ class CoachController extends AuthorizationController
         $this->entity = (object) $_POST;
 
         try {
-            $this->controlName();
-            $this->controlSurname();
-            $this->controlNickname();
+            $this->control();
+            Coach::addNew($this->entity);
+            $this->index();
         } catch (Exception $e) {
             $this->message=$e->getMessage();
             $this->newView();
+           
+    }
+}
+
+    public function change()
+    {
+        if($_SERVER['REQUEST_METHOD']==='GET'){
+            if(!isset($_GET['id'])){
+                $ic = new IndexController();
+                $ic->logout();
+                return;
+            }
+            $this->entity = Coach::load($_GET['id']);
+            $this->message='Change the desired details';
+            $this->changeView();
             return;
         }
-
-        Coach::addNew($this->entity);
-        $this->index();
+        $this->entity = (object) $_POST;
+        try {
+            $this->controlName();
+            Coach::changeExisting($this->entity);
+            $this->index();
+        } catch (Exception $e) {
+            $this->message=$e->getMessage();
+            $this->changeView();
+        }
+        $this->entity = (object) $_POST;
+        try {
+            $this->controlSurname();
+            Coach::changeExisting($this->entity);
+            $this->index();
+        } catch (Exception $e) {
+            $this->message=$e->getMessage();
+            $this->changeView();
+        }
+    $this->entity = (object) $_POST;
+        try {
+            $this->controlNickname();
+            Coach::changeExisting($this->entity);
+            $this->index();
+        } catch (Exception $e) {
+            $this->message=$e->getMessage();
+            $this->changeView();
+        }
     }
 
     private function newEntity()
@@ -49,6 +88,13 @@ class CoachController extends AuthorizationController
         $this->message='Please enter the details';
         $this->newView();
     }
+    private function changeView()
+    {
+        $this->view->render($this->viewDir . 'change',[
+            'entity'=>$this->entity,
+            'message'=>$this->message
+        ]);
+    }
 
     private function newView()
     {
@@ -58,10 +104,20 @@ class CoachController extends AuthorizationController
         ]);
     }
 
+    private function control()
+    {
+        $this->controlName();
+        $this->controlSurname();
+        $this->controlNickname();
+    }
+
     private function controlName()
     {
         if(strlen(trim($this->entity->name))==0){
             throw new Exception('Name is required');
+        }
+        if(strlen(trim($this->entity->name))>50){
+            throw new Exception('Name is cannot have more than 50 characters');
         }
     }
     private function controlSurname()
@@ -69,11 +125,17 @@ class CoachController extends AuthorizationController
         if(strlen(trim($this->entity->surname))==0){
             throw new Exception ('Surname is required');
         }
+        if(strlen(trim($this->entity->surname))>50){
+            throw new Exception('Surname is cannot have more than 50 characters');
+        }
     }
     private function controlNickname()
     {
         if(strlen(trim($this->entity->nickname))==0){
             throw new Exception ('Nickname is required');
+        }
+        if(strlen(trim($this->entity->nickname))>50){
+            throw new Exception('Nickname is cannot have more than 50 characters');
         }
     }
 }
