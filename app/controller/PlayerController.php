@@ -171,5 +171,6 @@ class PlayerController extends AuthorizationController
         }
         return true;
     }
+    
 }
 
