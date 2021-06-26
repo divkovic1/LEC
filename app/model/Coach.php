@@ -75,4 +75,28 @@ class Coach
         
         $connection->commit();
     }
+
+
+    public static function deleteExisting($id)
+    {
+        $connection = DB::getInstance();
+        $connection->beginTransaction();
+        $expression=$connection->prepare('
+            select organization from coach where id=:id
+        ');
+        $expression->execute(['id'=>$id]);
+        $idOrganization=$expression->fetchColumn();
+
+        $expression=$connection->prepare('
+            delete from coach where id=:id
+        ');
+        $expression->execute(['id'=>$id]);
+
+        $expression=$connection->prepare('
+            delete from organization where id=:id
+        ');
+        $expression->execute(['id'=>$idOrganization]);
+
+        $connection->commit();
+    }
 }

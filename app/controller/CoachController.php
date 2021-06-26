@@ -78,6 +78,18 @@ class CoachController extends AuthorizationController
         }
     }
 
+
+    public function delete()
+    {
+        if(!isset($_GET['id'])){
+            $ic = new IndexController();
+            $ic->logout();
+            return;
+        }
+        Coach::deleteExisting($_GET['id']);
+        header('location: ' . App::config('url') . 'coach/index');
+    }
+
     private function newEntity()
     {
         $this->entity = new stdClass();
