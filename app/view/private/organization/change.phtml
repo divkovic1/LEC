@@ -1,0 +1,25 @@
+<form class="log-in-form"
+action="<?=App::config('url')?>organization/change"
+method="POST">
+<h4 class="text-center">Change existing Team</h4>
+<label>Name
+    <input type="text"name="name" value="<?=$entity->name?>">
+</label>
+<label>Twitter
+    <input type="text"name="twitter" value="<?=$entity->twitter?>">
+</label>
+
+<?=$message?>
+
+<div class="grid-x grid-padding-x">
+  <div class="cell small-6 medium-6 large-6">
+    <a class="alert button expanded" 
+        href="<?=App::config('url')?>organization/index">Back</a>
+  </div>
+  <div class="cell small-6 medium-6 large-6">
+    <input type="submit" class="button expanded" value="Change"></input>
+  </div>
+</div>
+<input type="hidden" name="id" value="<?=$entity->id?>">
+
+</form>

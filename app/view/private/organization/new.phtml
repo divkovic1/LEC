@@ -1,0 +1,28 @@
+<form class="log-in-form"
+    action="<?=App::config('url')?>organization/new"
+    method="POST">
+
+    <h4 class="text-center">Add a new Team</h4>
+    <label>Name
+        <input type="text"name="name" value="<?=$entity->name?>">   
+    </label>
+
+        
+        
+    <label>Twitter
+        <input type="text" name="twitter" value="<?=$entity->twitter?>">
+    </label>
+
+    <?=$message?>
+
+    <div class="grid-x grid-padding-x">
+  <div class="cell small-6 large-6">
+    <a class="alert button expanded" 
+        href="<?=App::config('url')?>organization/index">Back</a>
+  </div>
+  <div class="cell small-6 large-6">
+    <input type="submit" class="button expanded" value="Submit"></input>
+  </div>
+</div>
+
+</form>
