@@ -7,11 +7,6 @@
         <a href="<?=App::config('url')?>player/change?id=<?$player->id?>">
             <i title="Change" class="fas fa-2x fa-pencil-alt"></i>
         </a>
-
-        <pre>
-        <?php print_r($players)?>
-        </pre>
-
         <?php if($player->playerorg==0): ?>
             <a href="<?=App::config('url')?>player/delete?id=<?=$player->id?>"
             onclick="return confirm('Are you sure? <?=$player->name?>?');">
