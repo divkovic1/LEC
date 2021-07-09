@@ -19,7 +19,7 @@ class Organization
     {
         $connection = DB::getInstance();
         $expression=$connection->prepare('
-          select a.id, a.name, a. twitter 
+          select a.id, a.name, a. twitter, count(b.id) as gameorg
           from organization a
           inner join game b on a.id=b.organization
           inner join matchday c on c.id=b.matchday  

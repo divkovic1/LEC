@@ -1,17 +1,35 @@
-<h1 style="font-size: 1em;">Players</h1>
-<a href="<?=App::config('url')?>player/new">Add a new player</a>
-<ul style="list-style-type: none">
-<?php foreach ($players as $player): ?>
-    <li>
-        <span style="font-size: 1.5em; color:black"><?=$player->nickname?></span>
-        <a href="<?=App::config('url')?>player/change?id=<?$player->id?>">
-            <i title="Change" class="fas fa-2x fa-pencil-alt"></i>
-        </a>
-        <?php if($player->playerorg==0): ?>
-            <a href="<?=App::config('url')?>player/delete?id=<?=$player->id?>"
-            onclick="return confirm('Are you sure? <?=$player->name?>?');">
-            <i title="Delete" style="color:red" class="fas fa-trash-alt"></i> </a>
-        <?php endif;?>
-    </li>
-<?php endforeach; ?>
-</ul>
+<table>
+    <thead>
+        <tr>
+            <th>Name & Surname</th>
+            <th>Country</th>
+            <th>Nickname</th>
+            <th>Organization</th>
+            <th style="text-align: right;">
+            <a href="<?=App::config('url')?>Player/new">Add New</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($players as $red): ?>
+            <tr>
+                <td><?=$red->name?> <?=$red->surname?> </td>
+                <td><?=$red->country?></td>
+                <td><?=$red->nickname?></td>
+                <td><?=$red->organization?></td>
+                
+                <td>
+                    <a href="<?=App::config('url')?>player/change?id=<?=$red->id?>">
+                        <i title="change" class="fas fa-2x fa-pencil-alt"></i>
+                    </a>
+                    <?php if($red->playerorg==0): ?>
+                        <a href="<?=App::config('url')?>player/delete?id=<?=$red->id?>"
+                        onclick="return confirm('Are you sure?');">
+                        <i title="delete" style="color: red" class="fas fa-trash-alt"></i></a>
+                    <?php endif;?>
+                </td>
+            </tr>
+
+        <?php endforeach; ?>
+    </tbody>
+</table>

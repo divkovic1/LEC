@@ -3,7 +3,6 @@
         <tr>
             <th>Organization Name</th>
             <th>Twitter</th>
-            <th>Contact</th>
             <th style="text-align: right;">
             <a href="<?=App::config('url')?>organization/new">Add New</a>
             </th>
@@ -14,12 +13,12 @@
             <tr>
                 <td><?=$red->name?></td>
                 <td><?=$red->twitter?></td>
-                <td><?=$red->contact?></td>
+                
                 <td>
                     <a href="<?=App::config('url')?>organization/change?id=<?=$red->id?>">
                         <i title="change" class="fas fa-2x fa-pencil-alt"></i>
                     </a>
-                    <?php if($red->organization==0): ?>
+                    <?php if($red->gameorg==0): ?>
                         <a href="<?=App::config('url')?>organization/delete?id=<?=$red->id?>"
                         onclick="return confirm('Are you sure?');">
                         <i title="delete" style="color: red" class="fas fa-trash-alt"></i></a>
