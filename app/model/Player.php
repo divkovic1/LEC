@@ -18,11 +18,11 @@ class Player
         $connection = DB::getInstance();
         $expression=$connection->prepare('
         
-                select a.*,count(b.player) as playerorg
-                from player a
-                left join organization b on b.id=a.player
-                group by a.name,a.surname,
-                a.country,a.nickname,a.lane ;
+        select a.*, count(b.id) as playerorg
+        from player a
+        left join organization b on b.id=a.organization
+        group by a.name,a.surname,
+        a.country,a.nickname,a.lane;
         ');
         $expression->execute();
         return $expression->fetchAll();
